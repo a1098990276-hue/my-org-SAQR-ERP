@@ -12,6 +12,7 @@ namespace UI.Forms
         private TextBox customerPhoneBox;
         private TextBox customerCityBox;
         private TextBox customerBalanceBox;
+        private Button clearButton;
 
         public CustomersForm()
         {
@@ -69,7 +70,11 @@ namespace UI.Forms
                 detailPanel.Controls.Add(fields[i], 1, i);
             }
 
+            this.clearButton = new Button() { Text = "مسح", Dock = DockStyle.Bottom };
+            this.clearButton.Click += ClearButton_Click;
+
             this.Controls.Add(detailPanel);
+            this.Controls.Add(clearButton);
             this.Controls.Add(customersGrid);
             this.Load += CustomersForm_Load;
         }
@@ -90,6 +95,15 @@ namespace UI.Forms
                 customerCityBox.Text = customersGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
                 customerBalanceBox.Text = customersGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            customerIdBox.Clear();
+            customerNameBox.Clear();
+            customerPhoneBox.Clear();
+            customerCityBox.Clear();
+            customerBalanceBox.Clear();
         }
     }
 }
