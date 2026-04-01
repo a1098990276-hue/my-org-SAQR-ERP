@@ -1,0 +1,1 @@
+# Use to push an image to Docker Hub.\n# From base Docker image.\nFROM node:14\n\n# Create app directory.\nWORKDIR /usr/src/app\n\n# Install app dependencies.\nCOPY package*.json ./\nRUN npm install\n\n# Copy app files.\nCOPY . .\n\n# Expose port 3001 and listen on 0.0.0.0.\nEXPOSE 3001\nCMD [ "node", "app.js" ]
