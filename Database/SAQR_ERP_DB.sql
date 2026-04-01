@@ -70,9 +70,10 @@ BEGIN
     CREATE TABLE Items (
         ItemID      int            NOT NULL IDENTITY(1,1) PRIMARY KEY,
         Name        nvarchar(100)  NOT NULL,
-        Unit        nvarchar(50)   NULL,
+        Unit        nvarchar(20)   NULL,
         Price       decimal(18,2)  NOT NULL DEFAULT 0,
-        Stock       decimal(18,2)  NOT NULL DEFAULT 0
+        Quantity    int            NOT NULL DEFAULT 0,
+        MinQuantity int            NOT NULL DEFAULT 0
     );
 END
 GO
