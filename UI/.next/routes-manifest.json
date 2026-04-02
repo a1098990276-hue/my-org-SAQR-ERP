@@ -1,1 +1,97 @@
-{"version":3,"pages404":true,"caseSensitive":false,"basePath":"","redirects":[{"source":"/:path+/","destination":"/:path+","internal":true,"statusCode":308,"regex":"^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"}],"headers":[],"dynamicRoutes":[],"staticRoutes":[{"page":"/","regex":"^/(?:/)?$","routeKeys":{},"namedRegex":"^/(?:/)?$"},{"page":"/accounting","regex":"^/accounting(?:/)?$","routeKeys":{},"namedRegex":"^/accounting(?:/)?$"},{"page":"/accounting/accounts","regex":"^/accounting/accounts(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/accounts(?:/)?$"},{"page":"/accounting/customers","regex":"^/accounting/customers(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/customers(?:/)?$"},{"page":"/accounting/invoices","regex":"^/accounting/invoices(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/invoices(?:/)?$"},{"page":"/accounting/items","regex":"^/accounting/items(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/items(?:/)?$"},{"page":"/accounting/journal","regex":"^/accounting/journal(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/journal(?:/)?$"},{"page":"/accounting/purchases","regex":"^/accounting/purchases(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/purchases(?:/)?$"},{"page":"/accounting/reports","regex":"^/accounting/reports(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/reports(?:/)?$"},{"page":"/accounting/suppliers","regex":"^/accounting/suppliers(?:/)?$","routeKeys":{},"namedRegex":"^/accounting/suppliers(?:/)?$"}],"dataRoutes":[],"rsc":{"header":"RSC","varyHeader":"RSC, Next-Router-State-Tree, Next-Router-Prefetch","prefetchHeader":"Next-Router-Prefetch","didPostponeHeader":"x-nextjs-postponed","contentTypeHeader":"text/x-component","suffix":".rsc","prefetchSuffix":".prefetch.rsc"},"rewrites":[]}
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/accounting",
+      "regex": "^/accounting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting(?:/)?$"
+    },
+    {
+      "page": "/accounting/accounts",
+      "regex": "^/accounting/accounts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/accounts(?:/)?$"
+    },
+    {
+      "page": "/accounting/customers",
+      "regex": "^/accounting/customers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/customers(?:/)?$"
+    },
+    {
+      "page": "/accounting/invoices",
+      "regex": "^/accounting/invoices(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/invoices(?:/)?$"
+    },
+    {
+      "page": "/accounting/items",
+      "regex": "^/accounting/items(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/items(?:/)?$"
+    },
+    {
+      "page": "/accounting/journal",
+      "regex": "^/accounting/journal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/journal(?:/)?$"
+    },
+    {
+      "page": "/accounting/purchases",
+      "regex": "^/accounting/purchases(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/purchases(?:/)?$"
+    },
+    {
+      "page": "/accounting/reports",
+      "regex": "^/accounting/reports(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/reports(?:/)?$"
+    },
+    {
+      "page": "/accounting/suppliers",
+      "regex": "^/accounting/suppliers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/suppliers(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}
