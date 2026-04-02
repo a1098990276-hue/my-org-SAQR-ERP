@@ -1,0 +1,11 @@
+{
+  "appTitle": "SAQR Accounting System",
+  "dashboard": "Dashboard",
+  "accounts": "Chart of Accounts",
+  "products": "Products",
+  "invoices": "Invoices",
+  "journal": "Journal Entries",
+  "reports": "Reports",
+  "settings": "Settings",
+  "language": "Language"
+}
