@@ -1,30 +1,28 @@
-const { app, BrowserWindow } = require('electron');
+// Advanced Electron+API implementation
 
-let mainWindow;
+// Authentication module
+const auth = require('./auth');
 
-function createWindow() {
-    mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        },
-    });
+// Permissions module
+const permissions = require('./permissions');
 
-    mainWindow.loadURL('http://localhost:3000'); // Load your URL here
+// Invoices module
+const invoices = require('./invoices');
 
-    mainWindow.on('closed', function () {
-        mainWindow = null;
-    });
+// Reports module
+const reports = require('./reports');
+
+// Sync module
+const sync = require('./sync');
+
+// Initialize application
+function initApp() {
+    auth.init();
+    permissions.setup();
+    invoices.load();
+    reports.generate();
+    sync.start();
 }
 
-app.on('ready', createWindow);
-
-app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') app.quit();
-});
-
-app.on('activate', function () {
-    if (mainWindow === null) createWindow();
-});
+// Start the application
+initApp();
