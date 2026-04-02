@@ -1,26 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Welcome to SAQR ERP System</h1>
-      <p style={styles.subtitle}>نظام إدارة الموارد البشرية والعمليات المتكامل</p>
-      
-      <div style={styles.features}>
-        <h2>المميزات الرئيسية:</h2>
-        <ul>
-          <li>✅ إدارة الموارد البشرية</li>
-          <li>✅ إدارة المالية والحسابات</li>
-          <li>✅ إدارة المشاريع</li>
-          <li>✅ إدارة المخزون</li>
-          <li>✅ التقارير والتحليلات</li>
-        </ul>
-      </div>
+  const router = useRouter();
 
-      <div style={styles.status}>
-        <p>🚀 التطبيق جاهز للاستخدام</p>
-        <p>📱 الواجهة الأمامية تعمل على: <code>http://localhost:3001</code></p>
-        <p>⚙️ الخادم الخلفي يعمل على: <code>http://localhost:3000</code></p>
+  useEffect(() => {
+    router.replace('/accounting');
+  }, [router]);
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', color: '#fff', fontFamily: 'Arial, sans-serif' }}>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: 64, marginBottom: 16 }}>🦅</div>
+        <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>نظام صقر للمحاسبة</h1>
+        <p style={{ color: '#94a3b8', fontSize: 16 }}>جارٍ التحميل...</p>
       </div>
     </div>
   );
