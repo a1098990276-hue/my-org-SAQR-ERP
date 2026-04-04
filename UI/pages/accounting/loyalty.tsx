@@ -251,8 +251,8 @@ export default function LoyaltyPage() {
       {/* Redeem Modal */}
       <Modal isOpen={isRedeemOpen} onClose={() => setIsRedeemOpen(false)} title="استبدال نقاط" width={500}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Input label="رقم هاتف العميل" placeholder="05xxxxxxxx" onChange={() => {}} />
-          <Input label="عدد النقاط للاستبدال" type="number" onChange={() => {}} />
+          <Input label="رقم هاتف العميل" value="" placeholder="05xxxxxxxx" onChange={() => {}} />
+          <Input label="عدد النقاط للاستبدال" value="" type="number" onChange={() => {}} />
           <div style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
               <span style={{ color: '#64748b' }}>رصيد العميل:</span>

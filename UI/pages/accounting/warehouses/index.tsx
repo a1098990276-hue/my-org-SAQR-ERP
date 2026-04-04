@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AccountingLayout, { Card, Button, Input, Modal, Badge, Select } from '../../components/AccountingLayout';
+import AccountingLayout, { Card, Button, Input, Modal, Badge, Select } from '../../../components/AccountingLayout';
 
 interface Warehouse {
   id: number;

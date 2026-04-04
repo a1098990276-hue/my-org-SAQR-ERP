@@ -312,9 +312,12 @@ export default function AccountingLayout({ children, title }: Props) {
 }
 
 // Reusable UI components
-export function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+export function Card({ children, style, onClick }: { children: React.ReactNode; style?: React.CSSProperties; onClick?: () => void }) {
   return (
-    <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 4px rgba(0,0,0,0.08)', padding: 24, ...style }}>
+    <div 
+      style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 4px rgba(0,0,0,0.08)', padding: 24, cursor: onClick ? 'pointer' : undefined, ...style }}
+      onClick={onClick}
+    >
       {children}
     </div>
   );

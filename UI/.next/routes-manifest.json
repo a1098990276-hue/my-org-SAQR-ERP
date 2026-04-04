@@ -34,10 +34,58 @@
       "namedRegex": "^/accounting/accounts(?:/)?$"
     },
     {
+      "page": "/accounting/assets",
+      "regex": "^/accounting/assets(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/assets(?:/)?$"
+    },
+    {
+      "page": "/accounting/banks",
+      "regex": "^/accounting/banks(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/banks(?:/)?$"
+    },
+    {
+      "page": "/accounting/branches",
+      "regex": "^/accounting/branches(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/branches(?:/)?$"
+    },
+    {
+      "page": "/accounting/cashboxes",
+      "regex": "^/accounting/cashboxes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/cashboxes(?:/)?$"
+    },
+    {
+      "page": "/accounting/cost-centers",
+      "regex": "^/accounting/cost\\-centers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/cost\\-centers(?:/)?$"
+    },
+    {
+      "page": "/accounting/coupons",
+      "regex": "^/accounting/coupons(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/coupons(?:/)?$"
+    },
+    {
       "page": "/accounting/customers",
       "regex": "^/accounting/customers(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/accounting/customers(?:/)?$"
+    },
+    {
+      "page": "/accounting/employees",
+      "regex": "^/accounting/employees(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/employees(?:/)?$"
+    },
+    {
+      "page": "/accounting/inventory",
+      "regex": "^/accounting/inventory(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/inventory(?:/)?$"
     },
     {
       "page": "/accounting/invoices",
@@ -58,6 +106,30 @@
       "namedRegex": "^/accounting/journal(?:/)?$"
     },
     {
+      "page": "/accounting/loyalty",
+      "regex": "^/accounting/loyalty(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/loyalty(?:/)?$"
+    },
+    {
+      "page": "/accounting/partners",
+      "regex": "^/accounting/partners(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/partners(?:/)?$"
+    },
+    {
+      "page": "/accounting/projects",
+      "regex": "^/accounting/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/projects(?:/)?$"
+    },
+    {
+      "page": "/accounting/promotions",
+      "regex": "^/accounting/promotions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/promotions(?:/)?$"
+    },
+    {
       "page": "/accounting/purchases",
       "regex": "^/accounting/purchases(?:/)?$",
       "routeKeys": {},
@@ -70,10 +142,34 @@
       "namedRegex": "^/accounting/reports(?:/)?$"
     },
     {
+      "page": "/accounting/sales",
+      "regex": "^/accounting/sales(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/sales(?:/)?$"
+    },
+    {
       "page": "/accounting/suppliers",
       "regex": "^/accounting/suppliers(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/accounting/suppliers(?:/)?$"
+    },
+    {
+      "page": "/accounting/support-tickets",
+      "regex": "^/accounting/support\\-tickets(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/support\\-tickets(?:/)?$"
+    },
+    {
+      "page": "/accounting/vouchers",
+      "regex": "^/accounting/vouchers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/vouchers(?:/)?$"
+    },
+    {
+      "page": "/accounting/warehouses",
+      "regex": "^/accounting/warehouses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting/warehouses(?:/)?$"
     }
   ],
   "dataRoutes": [],
