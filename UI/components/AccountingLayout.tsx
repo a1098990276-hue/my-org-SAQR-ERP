@@ -2,17 +2,198 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const NAV_ITEMS = [
-  { path: '/accounting', label: 'لوحة التحكم', icon: '📊' },
-  { path: '/accounting/accounts', label: 'دليل الحسابات', icon: '📋' },
-  { path: '/accounting/journal', label: 'القيود اليومية', icon: '📝' },
-  { path: '/accounting/invoices', label: 'فواتير المبيعات', icon: '🧾' },
-  { path: '/accounting/purchases', label: 'فواتير المشتريات', icon: '🛒' },
-  { path: '/accounting/customers', label: 'العملاء', icon: '👥' },
-  { path: '/accounting/suppliers', label: 'الموردون', icon: '🏭' },
-  { path: '/accounting/items', label: 'الأصناف والمنتجات', icon: '📦' },
-  { path: '/accounting/reports', label: 'التقارير المالية', icon: '📈' },
+interface NavItem {
+  path: string;
+  label: string;
+  icon: string;
+  children?: NavItem[];
+}
+
+const NAV_SECTIONS: { title: string; items: NavItem[] }[] = [
+  {
+    title: 'الرئيسية',
+    items: [
+      { path: '/accounting', label: 'لوحة المعلومات', icon: '📊' },
+      { path: '/accounting/accounts', label: 'دليل الحسابات', icon: '📋' },
+    ]
+  },
+  {
+    title: 'الأطراف',
+    items: [
+      { path: '/accounting/partners', label: 'الشركاء', icon: '🤝' },
+      { path: '/accounting/customers', label: 'العملاء', icon: '👥' },
+      { path: '/accounting/suppliers', label: 'الموردون', icon: '🏭' },
+      { path: '/accounting/employees', label: 'الموظفين', icon: '👔' },
+    ]
+  },
+  {
+    title: 'المالية',
+    items: [
+      { path: '/accounting/cashboxes', label: 'الصناديق', icon: '💰' },
+      { path: '/accounting/banks', label: 'البنوك', icon: '🏦' },
+      { path: '/accounting/expenses', label: 'المصروفات', icon: '💸' },
+      { path: '/accounting/assets', label: 'الأصول', icon: '🏢' },
+    ]
+  },
+  {
+    title: 'الشركات',
+    items: [
+      { path: '/accounting/shipping', label: 'شركات الشحن', icon: '🚚' },
+      { path: '/accounting/delivery', label: 'شركات التوصيل', icon: '🛵' },
+      { path: '/accounting/installment', label: 'شركات التقسيط', icon: '💳' },
+      { path: '/accounting/tech', label: 'الشركات التقنية', icon: '💻' },
+    ]
+  },
+  {
+    title: 'القيود المحاسبية',
+    items: [
+      { path: '/accounting/journal', label: 'قيود اليومية', icon: '📝' },
+      { path: '/accounting/journal/reversing', label: 'القيود العكسية', icon: '🔄' },
+      { path: '/accounting/journal/recurring', label: 'القيود الدورية', icon: '🔁' },
+      { path: '/accounting/journal/opening', label: 'القيود الافتتاحية', icon: '📖' },
+    ]
+  },
+  {
+    title: 'السندات',
+    items: [
+      { path: '/accounting/vouchers/receipt', label: 'سند تحصيل/قبض', icon: '📥' },
+      { path: '/accounting/vouchers/payment', label: 'سند سداد/صرف', icon: '📤' },
+    ]
+  },
+  {
+    title: 'المبيعات',
+    items: [
+      { path: '/accounting/sales/advanced', label: 'المبيعات المتقدمة', icon: '🧾' },
+      { path: '/accounting/sales/cashier', label: 'مبيعات كاشير', icon: '🖥️' },
+      { path: '/accounting/sales/touch', label: 'المبيعات لمس', icon: '📱' },
+      { path: '/accounting/sales/self-service', label: 'الفوترة الذاتية', icon: '🤖' },
+      { path: '/accounting/sales/price-reader', label: 'قارئ الأسعار', icon: '🔍' },
+    ]
+  },
+  {
+    title: 'عروض الأسعار',
+    items: [
+      { path: '/accounting/quotations/advanced', label: 'عروض أسعار متقدمة', icon: '📄' },
+      { path: '/accounting/quotations', label: 'عرض سعر', icon: '📋' },
+      { path: '/accounting/quotations/cashier', label: 'عرض سعر كاشير', icon: '🖨️' },
+    ]
+  },
+  {
+    title: 'المرتجعات',
+    items: [
+      { path: '/accounting/returns/sales', label: 'مرتجع البيع', icon: '↩️' },
+      { path: '/accounting/returns/cashier', label: 'مرتجع مبيعات كاشير', icon: '🔙' },
+      { path: '/accounting/returns/touch', label: 'مرتجع البيع لمس', icon: '📲' },
+    ]
+  },
+  {
+    title: 'خدمة العملاء',
+    items: [
+      { path: '/accounting/field-survey', label: 'المسح الميداني', icon: '📍' },
+      { path: '/accounting/support-tickets', label: 'تذاكر دعم العملاء', icon: '🎫' },
+      { path: '/accounting/promotions', label: 'العروض الترويجية', icon: '🏷️' },
+      { path: '/accounting/coupons', label: 'الكوبونات والقسائم', icon: '🎟️' },
+      { path: '/accounting/loyalty', label: 'نقاط الولاء', icon: '⭐' },
+      { path: '/accounting/business-info', label: 'معلومات النشاط', icon: 'ℹ️' },
+    ]
+  },
+  {
+    title: 'المشتريات',
+    items: [
+      { path: '/accounting/purchases/multiple', label: 'مشتريات متعددة', icon: '📦' },
+      { path: '/accounting/purchases/advanced', label: 'المشتريات المتقدمة', icon: '🛒' },
+      { path: '/accounting/purchases', label: 'المشتريات', icon: '🛍️' },
+      { path: '/accounting/purchases/cashier', label: 'مشتريات كاشير', icon: '💻' },
+      { path: '/accounting/purchases/mobile', label: 'مشتريات محمولة', icon: '📱' },
+      { path: '/accounting/purchases/external', label: 'مشتريات خارجية', icon: '🌍' },
+      { path: '/accounting/purchases/orders', label: 'طلب شراء', icon: '📋' },
+    ]
+  },
+  {
+    title: 'مرتجعات المشتريات',
+    items: [
+      { path: '/accounting/returns/purchase', label: 'مرتجع الشراء', icon: '↪️' },
+      { path: '/accounting/returns/purchase-cashier', label: 'مرتجع شراء كاشير', icon: '🔄' },
+      { path: '/accounting/returns/purchase-external', label: 'مرتجع مشتريات خارجية', icon: '🔃' },
+      { path: '/accounting/returns/purchase-multiple', label: 'مرتجع مشتريات متعددة', icon: '📥' },
+    ]
+  },
+  {
+    title: 'المخزون',
+    items: [
+      { path: '/accounting/items', label: 'المنتجات', icon: '📦' },
+      { path: '/accounting/warehouses', label: 'المخازن ونقاط البيع', icon: '🏪' },
+      { path: '/accounting/inventory/opening', label: 'مخزون أول المدة', icon: '📋' },
+      { path: '/accounting/inventory/count', label: 'جرد المخزون', icon: '📊' },
+      { path: '/accounting/inventory/mobile-count', label: 'الجرد بالأجهزة المحمولة', icon: '📱' },
+      { path: '/accounting/inventory/adjustment', label: 'تصحيح الكميات', icon: '✏️' },
+    ]
+  },
+  {
+    title: 'حركات المخزون',
+    items: [
+      { path: '/accounting/inventory/transfer', label: 'نقل مخزون', icon: '🔀' },
+      { path: '/accounting/inventory/issue', label: 'صرف مخزني', icon: '📤' },
+      { path: '/accounting/inventory/issue-touch', label: 'صرف مخزني لمس', icon: '👆' },
+      { path: '/accounting/inventory/supply', label: 'توريد مخزني', icon: '📥' },
+      { path: '/accounting/inventory/receive', label: 'استلام مخزون', icon: '✅' },
+    ]
+  },
+  {
+    title: 'الإعدادات',
+    items: [
+      { path: '/accounting/cooking-methods', label: 'طرق الطبخ', icon: '🍳' },
+      { path: '/accounting/branches', label: 'الفروع', icon: '🏢' },
+      { path: '/accounting/users', label: 'المستخدمين', icon: '👤' },
+      { path: '/accounting/cost-centers', label: 'مراكز التكلفة', icon: '🎯' },
+      { path: '/accounting/projects', label: 'المشاريع', icon: '📐' },
+    ]
+  },
+  {
+    title: 'التكامل',
+    items: [
+      { path: '/accounting/e-invoice', label: 'الفوترة الإلكترونية', icon: '📃' },
+      { path: '/accounting/whatsapp', label: 'الربط مع واتس اب', icon: '💬' },
+    ]
+  },
+  {
+    title: 'المجموعات',
+    items: [
+      { path: '/accounting/groups/products', label: 'مجموعات المنتجات', icon: '📦' },
+      { path: '/accounting/groups/delivery', label: 'مجموعة شركات التوصيل', icon: '🚗' },
+      { path: '/accounting/groups/order-types', label: 'أنواع الطلبات', icon: '📋' },
+      { path: '/accounting/groups/accounts', label: 'مجموعات الحسابات', icon: '📁' },
+      { path: '/accounting/groups/branches', label: 'مجموعات الفروع', icon: '🏬' },
+      { path: '/accounting/groups/warehouses', label: 'مجموعات المخازن', icon: '🏭' },
+      { path: '/accounting/groups/customers', label: 'مجموعات العملاء', icon: '👥' },
+      { path: '/accounting/groups/suppliers', label: 'مجموعات الموردين', icon: '🤝' },
+      { path: '/accounting/groups/cashboxes', label: 'مجموعات الصناديق', icon: '💵' },
+      { path: '/accounting/groups/banks', label: 'مجموعات البنوك', icon: '🏦' },
+      { path: '/accounting/groups/employees', label: 'مجموعات الموظفين', icon: '👔' },
+      { path: '/accounting/groups/expenses', label: 'مجموعات المصاريف', icon: '💸' },
+      { path: '/accounting/groups/assets', label: 'مجموعات الأصول', icon: '🏗️' },
+    ]
+  },
+  {
+    title: 'التقارير',
+    items: [
+      { path: '/accounting/reports', label: 'التقارير المالية', icon: '📈' },
+      { path: '/accounting/reports/sales', label: 'تقارير المبيعات', icon: '💹' },
+      { path: '/accounting/reports/purchases', label: 'تقارير المشتريات', icon: '📉' },
+      { path: '/accounting/reports/inventory', label: 'تقارير المخزون', icon: '📊' },
+    ]
+  },
+  {
+    title: 'النظام',
+    items: [
+      { path: '/accounting/license', label: 'ترخيص النظام', icon: '🔑' },
+      { path: '/accounting/support', label: 'طلب المساعدة والدعم', icon: '🦅' },
+    ]
+  },
 ];
+
+// Flat list for backward compatibility
+const NAV_ITEMS = NAV_SECTIONS.flatMap(section => section.items);
 
 interface Props {
   children: React.ReactNode;
@@ -50,32 +231,41 @@ export default function AccountingLayout({ children, title }: Props) {
 
         {/* Nav */}
         <nav style={{ flex: 1, overflowY: 'auto', padding: '8px 0' }}>
-          {NAV_ITEMS.map(item => {
-            const isActive = router.pathname === item.path;
-            return (
-              <Link key={item.path} href={item.path} style={{ textDecoration: 'none' }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                  padding: collapsed ? '10px 0' : '10px 16px',
-                  justifyContent: collapsed ? 'center' : 'flex-start',
-                  margin: '2px 8px',
-                  borderRadius: 8,
-                  background: isActive ? 'rgba(59,130,246,0.25)' : 'transparent',
-                  borderRight: isActive ? '3px solid #3b82f6' : '3px solid transparent',
-                  color: isActive ? '#60a5fa' : '#94a3b8',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  fontSize: 14,
-                  fontWeight: isActive ? 600 : 400,
-                }}>
-                  <span style={{ fontSize: 18, flexShrink: 0 }}>{item.icon}</span>
-                  {!collapsed && <span>{item.label}</span>}
+          {NAV_SECTIONS.map((section, sectionIndex) => (
+            <div key={sectionIndex}>
+              {!collapsed && (
+                <div style={{ padding: '12px 16px 6px', fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  {section.title}
                 </div>
-              </Link>
-            );
-          })}
+              )}
+              {section.items.map(item => {
+                const isActive = router.pathname === item.path || router.pathname.startsWith(item.path + '/');
+                return (
+                  <Link key={item.path} href={item.path} style={{ textDecoration: 'none' }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 12,
+                      padding: collapsed ? '10px 0' : '10px 16px',
+                      justifyContent: collapsed ? 'center' : 'flex-start',
+                      margin: '2px 8px',
+                      borderRadius: 8,
+                      background: isActive ? 'rgba(59,130,246,0.25)' : 'transparent',
+                      borderRight: isActive ? '3px solid #3b82f6' : '3px solid transparent',
+                      color: isActive ? '#60a5fa' : '#94a3b8',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      fontSize: 13,
+                      fontWeight: isActive ? 600 : 400,
+                    }}>
+                      <span style={{ fontSize: 16, flexShrink: 0 }}>{item.icon}</span>
+                      {!collapsed && <span>{item.label}</span>}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
         </nav>
 
         {/* Collapse button */}
@@ -122,9 +312,12 @@ export default function AccountingLayout({ children, title }: Props) {
 }
 
 // Reusable UI components
-export function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+export function Card({ children, style, onClick }: { children: React.ReactNode; style?: React.CSSProperties; onClick?: () => void }) {
   return (
-    <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 4px rgba(0,0,0,0.08)', padding: 24, ...style }}>
+    <div 
+      style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 4px rgba(0,0,0,0.08)', padding: 24, cursor: onClick ? 'pointer' : undefined, ...style }}
+      onClick={onClick}
+    >
       {children}
     </div>
   );
